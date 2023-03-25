@@ -3,7 +3,7 @@ body {
 }
 
 #priceUpdateTimer {
-    font: 2.8rem "poppins-normal";
+    font-size: 2.8rem;
     letter-spacing: 1px;
     text-decoration: none;
     text-transform: none;
@@ -11,8 +11,7 @@ body {
 }
 
 #timer {
-    margin-top: -2rem;
-    font: 3.2rem "poppins-bold";
+    font-size: 3.2rem;
 }
 
 #infoText {
@@ -24,11 +23,11 @@ body {
 }
 
 #title {
-    font: 2.5rem "poppins-bold";
+    font-size: 2.5rem;
     line-height: 0;
 }
 
 #infoText {
-    font: 2rem "poppins-normal";
+    font-size: 2rem;
     font-weight: 300;
 }
