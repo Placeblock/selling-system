@@ -29,14 +29,7 @@ function initGraph() {
 
     return new Chart(ctx, {
         type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
-        },
+        data: {},
         options: {
             scales: {
                 y: {
@@ -53,14 +46,14 @@ function updateGraph(products) {
             priceChart.data.datasets.push({
                 id: id,
                 label: product.name,
-                data: product.price_data.map(priceData => priceData.price),
+                data: mapToPoints(product.price_data),
                 fill: false,
                 borderColor: 'red',
                 tension: 0.1
             });
         } else {
             const dataset = priceChart.data.datasets.find(dataset => dataset.id === id);
-            dataset.data.push(product.price_data.map(priceData => priceData.price));
+            dataset.data.push(mapToPoints(product.price_data));
         }
     }
 
@@ -70,7 +63,7 @@ function updateGraph(products) {
 function mapToPoints(priceData) {
     return priceData.map(priceData => {
         return {
-            x: priceData.created_at,
+            x: new Date(priceData.created_at),
             y: priceData.price
         }
     });
