@@ -1,0 +1,34 @@
+body {
+    margin: 2.5rem;
+}
+
+#priceUpdateTimer {
+    font: 2.8rem "poppins-normal";
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: none;
+    line-height: 0;
+}
+
+#timer {
+    margin-top: -2rem;
+    font: 3.2rem "poppins-bold";
+}
+
+#infoText {
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    width: 80%;
+    left: 10%;
+}
+
+#title {
+    font: 2.5rem "poppins-bold";
+    line-height: 0;
+}
+
+#infoText {
+    font: 2rem "poppins-normal";
+    font-weight: 300;
+}
