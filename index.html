@@ -1,31 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="css/main_style.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-<!--    price update timer text  -->
-<div id="priceUpdateTimer">
-    <p>Preis aktualisierung in</p>
-    <p id="timer">43 Sekunden</p>
-</div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Verkauf | WEG</title>
+        <link href="css/main_style.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.min.js" integrity="sha512-GCiwmzA0bNGVsp1otzTJ4LWQT2jjGJENLGyLlerlzckNI30moi2EQT0AfRI7fLYYYDKR+7hnuh35r3y1uJzugw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>        <script src="https://cdn.jsdelivr.net/npm/moment@^2"></script>
+        <script src=" https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js "></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
+    </head>
+    <body>
+        <!--    price update timer text  -->
+        <div id="price-update-timer">
+            <p>Preis aktualisierung: <span id="timer-value">Keine Daten</span></p>
+        </div>
 
-<!-- graph -->
-<div>
-    <canvas id="myChart"></canvas>
-</div>
-
-<!-- info text -->
-<div id="infoText">
-    <p id="title">So funktioniert's:</p>
-    <p id="description">
-        Je nach Nachfrage variieren die Preise.
-        Bei abnehmender Nachfrage fällt der Preis, bei zunehmender Nachfrage steigt der Preis.
-    </p>
-</div>
-<script src="js/index.js"></script>
-</body>
+        <!-- graph -->
+        <div id="chart-container">
+            <canvas id="price-chart"></canvas>
+        </div>
+        <script src="js/index.js"></script>
+    </body>
 </html>
