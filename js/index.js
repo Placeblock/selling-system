@@ -1,10 +1,15 @@
-var DateTime = luxon.DateTime;
+
+
+onUpdate = products => {
+    updateUpdateTimer()
+    setCurrentPrice(products);
+    updateGraph(products);
+}
 
 /** 
  * Last Update Timer
 */
 const lastUpdateElement = document.getElementById("timer-value");
-var lastPriceUpdate = null;
 setInterval(updateUpdateTimer, 1000)
 function updateUpdateTimer() {
     if (lastPriceUpdate == null) {
@@ -27,10 +32,9 @@ const currentPriceContainer = document.getElementById("current-price-container")
 function setCurrentPrice(products) {
     for (product of products.values()) {
         const productElement = getProductElement(product);
-        const sellDataLength = product.price_data.length;
-        if (sellDataLength > 0) {
-            var last_price = product.price_data[sellDataLength-1].price/100 + "€";
-            productElement.innerHTML = "<span>"+product.name+"</span>: " + last_price;
+        const currentPrice = getCurrentPrice(product);
+        if (currentPrice != null) {
+            productElement.innerHTML = "<span>"+product.name+"</span>: " + getPriceString(currentPrice);
         }
     }
 }
@@ -54,47 +58,10 @@ function toggleCurrentPriceTab() {
     }
 }
 
-/** 
- * Chart
-*/
-
-const url = 'https://wirtschaft.codelix.de/api?';
-var lastLoad = new Date(0);
+/**
+ * Graph
+ */
 const priceChart = initGraph();
-loadData();
-setInterval(loadData, 20 * 1000);
-
-function loadData() {
-    var now = new Date();
-    fetch(url + new URLSearchParams({
-        'from': lastLoad.toISOString(),
-        'to': now.toISOString()
-    }))
-    .then(data => data.json())
-    .then(json => {
-        var products = new Map();
-        for (const jsonProduct of json) {
-            const product = jsonProduct;
-            products.set(product.id, product);
-        }
-        console.log(products)
-        for (const product of products.values()) {
-            const priceDataLength = product.price_data.length
-            if (priceDataLength > 0) {
-                const lastPriceData = new Date(product.price_data[0].created_at)
-                if (lastPriceUpdate == null || lastPriceData > lastPriceUpdate) {
-                    lastPriceUpdate = lastPriceData
-                }
-            }
-        }
-        updateUpdateTimer()
-
-        setCurrentPrice(products);
-        updateGraph(products);
-    });
-
-    lastLoad = now;
-}
 
 function initGraph() {
     const ctx = document.getElementById('price-chart');
