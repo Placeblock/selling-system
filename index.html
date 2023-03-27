@@ -9,6 +9,10 @@
         <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
     </head>
     <body>
+        <button id="current-price-button" onclick="toggleCurrentPriceTab()">Aktueller Preis</button>
+        <div id="current-price-container" data-visible>
+            <h1>Aktueller Preis:</h1>
+        </div>
         <!--    price update timer text  -->
         <div id="price-update-timer">
             <p>Preis aktualisierung: <span id="timer-value">Keine Daten</span></p>

@@ -24,3 +24,49 @@ p {
     position: relative;
     overflow: hidden;
 }
+
+#current-price-button {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px gray;
+    background-color: white;
+    z-index: 3;
+}
+
+#current-price-button:hover {
+    cursor: pointer;
+}
+
+#current-price-container {
+    transform: translateX(-150%);
+    position: fixed;
+    z-index: 2;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px gray;
+    background-color: white;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#current-price-container h1 {
+    margin: 0px;
+}
+
+
+#current-price-container p {
+    font-size: 20px;
+}
+
+#current-price-container span {
+    font-weight: 800;
+}
+
+#current-price-container[data-visible] {
+    transform: translateX(0%);
+}
