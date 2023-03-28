@@ -1,6 +1,7 @@
 const productsContainer = document.getElementById('product-container');
 
 const currentPrices = new Map();
+var password = "";
 
 onUpdate = newproducts => {
     for (let [id, product] of newproducts) {
@@ -40,4 +41,9 @@ function sellProduct(id) {
     })
        .then(response => response.json())
        .then(response => console.log(JSON.stringify(response)))
+}
+
+function submitPassword() {
+    password = document.getElementById("pass-input").value;
+    document.getElementById("auth").style.display = "none";
 }
