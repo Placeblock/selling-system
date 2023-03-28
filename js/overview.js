@@ -64,11 +64,11 @@ function updateSellsGraph(products) {
             sellsChart.data.datasets.push({
                 id: id,
                 label: product.name,
-                data: mapToPoints(product.sell_data, (data, i) => product.stock-i)
+                data: mapToPoints(product.sell_data, (data, i) => product.stock-i-1)
             });
         } else {
             const dataset = sellsChart.data.datasets.find(dataset => dataset.id === id);
-            dataset.data.push(...mapToPoints(product.sell_data, (data, i) => product.stock-dataset.data.length-i));
+            dataset.data.push(...mapToPoints(product.sell_data, (data, i) => product.stock-dataset.data.length-i-1));
         }
     }
 

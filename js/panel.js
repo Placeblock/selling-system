@@ -24,7 +24,12 @@ onUpdate = newproducts => {
         } else {
             priceString = getPriceString(product.start_price);
         }           
-        productElement.innerHTML = "<span>"+product.name+" ("+priceString+")</span><button onclick='sellProduct("+id+")'>Verkaufen</button>";
+        const outsold = isOutsold(product);
+        if (outsold) {
+            productElement.innerHTML = "<span>"+product.name+" (AUSVERKAUFT)</span>";
+        } else {
+            productElement.innerHTML = "<span>"+product.name+" ("+priceString+")</span><button onclick='sellProduct("+id+")'>Verkaufen</button>";
+        }
 
 
     }

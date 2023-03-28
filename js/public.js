@@ -5,11 +5,12 @@
 const currentPriceContainer = document.getElementById("current-price-container");
 
 function setCurrentPrice(products) {
-    for (product of products.values()) {
+    for ([id, product] of products) {
         const productElement = getProductElement(product);
         const currentPrice = getCurrentPrice(product);
+        const outsold = isOutsold(product);
         if (currentPrice != null) {
-            productElement.innerHTML = "<span>"+product.name+"</span>: " + getPriceString(currentPrice);
+            productElement.innerHTML = "<span>"+product.name+"</span>: " + (outsold ? "AUSVERKAUFT" : getPriceString(currentPrice));
         }
     }
 }
@@ -75,7 +76,8 @@ function initGraph() {
                     fill: false,
                     cubicInterpolationMode: 'monotone',
                     tension: 0.4,
-                    indexAxis: 'x'
+                    indexAxis: 'x',
+                    pointStyle: false
                 }
             },
             indexAxis: 'x',
