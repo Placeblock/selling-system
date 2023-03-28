@@ -10,7 +10,6 @@ const url = 'https://wirtschaft.codelix.de/api?';
 var lastLoad = new Date(0);
 var lastPriceUpdate = null;
 loadData();
-setInterval(loadData, 2 * 1000);
 
 function loadData() {
     var now = new Date();
@@ -28,7 +27,7 @@ function loadData() {
         for (const product of products.values()) {
             const priceDataLength = product.price_data.length
             if (priceDataLength > 0) {
-                const lastPriceData = new Date(product.price_data[0].created_at)
+                const lastPriceData = new Date(product.price_data[priceDataLength-1].created_at)
                 if (lastPriceUpdate == null || lastPriceData > lastPriceUpdate) {
                     lastPriceUpdate = lastPriceData
                 }
@@ -38,9 +37,17 @@ function loadData() {
         if (onUpdate != null) {
             onUpdate(products);
         }
+        setTimeout(loadData, getNextUpdateMillis());
     });
 
     lastLoad = now;
+}
+
+function getNextUpdateMillis() {
+    if (lastPriceUpdate == null) {
+        return 1000*10;
+    }
+    return 1000*10 - (new Date() - lastPriceUpdate)
 }
 
 function getCurrentPrice(product) {
@@ -53,7 +60,10 @@ function getCurrentPrice(product) {
 }
 
 function getPriceString(price) {
-    return (price/100).toLocaleString('de-DE', {
-        minimumFractionDigits: 2
-    })+"€";
+    return (Math.round((price/10))/10).toLocaleString('de-DE', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        style: "currency",
+        currency: "EUR"
+    });
 }

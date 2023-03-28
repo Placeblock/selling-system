@@ -3,7 +3,6 @@ const productsContainer = document.getElementById('product-container');
 const currentPrices = new Map();
 
 onUpdate = newproducts => {
-    console.log(newproducts);
     for (let [id, product] of newproducts) {
         const elementid = "product-" + id;
         productElement = document.getElementById(elementid);

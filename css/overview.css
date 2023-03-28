@@ -1,0 +1,35 @@
+body {
+    padding: 10px;
+}
+
+#grid-container {
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+}
+
+h1 {
+    margin-block: 10px;
+}
+
+#current-price-container p {
+    font-size: 30px;
+    margin: 0px 0px 5px 0px;
+}
+
+#current-price-container span {
+    font-weight: bold;
+}
+
+.chart-container {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+}
